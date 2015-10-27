@@ -1,4 +1,43 @@
 ##Mysql的笔记
+# 2015.10.27
+
+- 将客户端的显示，设置为gbk模式（这样的设置，不会影响数据库的设置）
+
+
+	mysql>SET NAMES jbk;
+- 子查询，指出现在其他SQL语句内的SELECT子句
+
+>* 由比较运算符引发的子查询: ＝,>=,<,<= .....
+
+
+	mysql> SELECT AVG(goods_price) FROM tdb_goods;==>对表的价格，求平均值
+	mysql> SELECT ROUND(AVG(goods_price),2) FROM tdb_goods; ==>对平均值的价格，四舍五入，并保留两位小数。
+	mysql> SELECT goods_id ,goods_name,goods_price FROM tdb_goods WHERE	goods_price > 4529.14.==>查询id,name,price.把价格大于4529.14,复合条件的数据显示出来。
+	----通过子查询，将上列代码合并-----
+	mysql> SELECT goods_id,goods_name,goods_price FROM tdb_goods WHERE goods_price > (SELECT ROUND(AVG(goods_price),2) FROM tdb_names);
+- 将查询结果写入数据表
+
+
+
+	mysql> INSERT tdb_goods_cates(cate_name) SELECT goods_cate FROM tdb_goods GROUP BY goods_cate;
+- 查看数据表的结构
+
+
+	mysql> DESC tdb_goods_cates(数据表的名字);
+- 多表更新
+
+
+	mysql> UPDATE tdb_goods INNER JOIN tdb_goods_cates ON goods_cate = cate_name SET goods_cate = cate_id;
+- 连接，这里主要用于，显示时，将数据库的数字，转换成用户看到的汉子.
+>* ###连接类型
+>* 内链接==>INNER JOIN ==> 仅仅显示有交集的信息。
+>* 左(右)外连接==>LEFT(RIGHT) JOIN ==> 两个交集，并且把左(右)表没有的显现出来
+
+>* 语法结构: A表+连接类型＋B表＋连接条件。
+
+- 自身连接 ==> 数据表连接的是其自身。
+- 多表删除 ==> 一张表，根据另一张表的条件，删除其内容.
+
 #2015.10.25
 
 - 插入记录
@@ -208,3 +247,8 @@
 ### 创建数据库
 	CREATE DATABASE t1;
 
+
+### 查看数据库
+
+
+	mysql> SHOW DATABSES ;
