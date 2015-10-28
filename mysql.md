@@ -1,4 +1,43 @@
 ##Mysql的笔记
+# 2015.10.28
+- 字符函数
+>* CONCAT() 连接，两个字符
+
+
+	mysql> SELECT CONCAT("imooc","-","mysql");
+	mysql> imooc-mysql
+>* CONCAT_WS() 指定分隔符，来进行拼接
+
+
+	mysql> SELECT CONCAT_WS("-","a","b");
+	mysql> a-b ;
+>* FORMAT() 数字格式化
+
+
+	mysql> SELECT FORMAT(12560.75,2)==> 这里指保留两位小数
+	mysql> 12,560.75
+>* LOWER(),UPPER()，小写，大写转化。
+>* LEFT(),RIGHT()，SUBSTRING()获取字符
+
+
+	mysql> SELECT LEFT("MYSQL",2)==>从左往右获取两位。
+	mysql> MY
+	mysql> SELECT RIGHT("MYSQL",2) ==> 从右往左得到两位.
+	mysql> QL
+	mysql> SELECT SUBSTRING("mysql",1,2) ==> 从第一个字符开始，截图两个字符
+	mysql> my
+>* LENGTH() 获取长度(包含空格)
+>* LTRIM() 将前面的空格去掉。
+>* RTRIM() 右边。
+
+>* REPLACE() 替换
+
+
+	mysql> SELECT REPlACE ("??mysql??","?","")==>所选文字＋被替换字符＋目标字符；
+	mysql> mysql
+
+
+
 # 2015.10.27
 
 - 将客户端的显示，设置为gbk模式（这样的设置，不会影响数据库的设置）
